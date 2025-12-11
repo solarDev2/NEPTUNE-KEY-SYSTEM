@@ -509,10 +509,10 @@ function ModernUI.CreateWindow(options)
         local newWidth, newHeight
         
         if isTablet then
-            newWidth = newViewportSize.X - 100
+            newWidth = newViewportSize.X - 150
             newHeight = math.min(newViewportSize.Y - GuiInset - 40, 450)
         elseif isMobile then
-            newWidth = newViewportSize.X - 100
+            newWidth = newViewportSize.X - 150
             newHeight = math.min(newViewportSize.Y - GuiInset - 40, 480)
         else
             -- For PC, keep the current size unless it exceeds viewport
