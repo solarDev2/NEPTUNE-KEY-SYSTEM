@@ -196,14 +196,10 @@ function ModernUI.CreateWindow(options)
     local ViewportSize = Camera.ViewportSize
     
     local defaultWidth, defaultHeight
-    if isTablet then
-        -- Tablet sizing - OPTIMIZED WIDTH
-        defaultWidth = 520
+    if isTablet or isMobile then
+        -- Mobile/Tablet sizing - responsive with max cap
+        defaultWidth = math.min(ViewportSize.X - 40, 600)
         defaultHeight = math.min(ViewportSize.Y - GuiInset - 40, 450)
-    elseif isMobile then
-        -- Phone sizing - OPTIMIZED WIDTH
-        defaultWidth = 460
-        defaultHeight = math.min(ViewportSize.Y - GuiInset - 40, 480)
     else
         -- PC sizing - responsive with caps
         defaultWidth = math.min(ViewportSize.X - 100, 600)
@@ -508,12 +504,9 @@ function ModernUI.CreateWindow(options)
         local newViewportSize = Camera.ViewportSize
         local newWidth, newHeight
         
-        if isTablet then
-            newWidth = 520
+        if isTablet or isMobile then
+            newWidth = math.min(newViewportSize.X - 40, 600)
             newHeight = math.min(newViewportSize.Y - GuiInset - 40, 450)
-        elseif isMobile then
-            newWidth = 460
-            newHeight = math.min(newViewportSize.Y - GuiInset - 40, 480)
         else
             -- For PC, keep the current size unless it exceeds viewport
             newWidth = math.min(MainFrame.AbsoluteSize.X, newViewportSize.X - 40)
