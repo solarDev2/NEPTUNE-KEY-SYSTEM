@@ -196,14 +196,14 @@ function ModernUI.CreateWindow(options)
     local ViewportSize = Camera.ViewportSize
     
     local defaultWidth, defaultHeight
-    if isMobile then
-        -- Phone sizing
-        defaultWidth = math.min(ViewportSize.X - 20, 500)
-        defaultHeight = math.min(ViewportSize.Y - GuiInset - 40, 600)
-    elseif isTablet then
-        -- Tablet sizing
-        defaultWidth = math.min(ViewportSize.X - 60, 900)
-        defaultHeight = math.min(ViewportSize.Y - GuiInset - 60, 600)
+    if isTablet then
+        -- Tablet sizing - FULL WIDTH
+        defaultWidth = ViewportSize.X - 10
+        defaultHeight = math.min(ViewportSize.Y - GuiInset - 60, 500)
+    elseif isMobile then
+        -- Phone sizing - FULL WIDTH
+        defaultWidth = ViewportSize.X - 10
+        defaultHeight = math.min(ViewportSize.Y - GuiInset - 60, 450)
     else
         -- PC sizing - responsive with caps
         defaultWidth = math.min(ViewportSize.X - 100, 1000)
@@ -508,12 +508,12 @@ function ModernUI.CreateWindow(options)
         local newViewportSize = Camera.ViewportSize
         local newWidth, newHeight
         
-        if isMobile then
-            newWidth = math.min(newViewportSize.X - 20, 700)
-            newHeight = math.min(newViewportSize.Y - GuiInset - 40, 500)
-        elseif isTablet then
-            newWidth = math.min(newViewportSize.X - 40, 1400)
-            newHeight = math.min(newViewportSize.Y - GuiInset - 60, 550)
+        if isTablet then
+            newWidth = newViewportSize.X - 10
+            newHeight = math.min(newViewportSize.Y - GuiInset - 60, 500)
+        elseif isMobile then
+            newWidth = newViewportSize.X - 10
+            newHeight = math.min(newViewportSize.Y - GuiInset - 60, 450)
         else
             -- For PC, keep the current size unless it exceeds viewport
             newWidth = math.min(MainFrame.AbsoluteSize.X, newViewportSize.X - 40)
